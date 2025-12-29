@@ -1,0 +1,26 @@
+<h2>Edit Person {{ person.ari8mosEisagoghs }}</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" onclick="return confirmSave();">
+    Save
+   </button>
+    {% if messages %}
+
+    <ul class="messages">
+        {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+</form>
+
+<script>
+function confirmSave() {
+    return confirm("Are you sure you want to save these changes?");
+}
+</script>
+
+
+<a href="{% url 'resolve_duplicates' %}"><button>Back to duplicates</button></a>

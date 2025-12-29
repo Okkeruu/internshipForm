@@ -1,0 +1,20 @@
+<h2>Upload Results</h2>
+
+<p><strong>Added:</strong> {{ added_count }}</p>
+<p><strong>Duplicates:</strong> {{ duplicate_count }}</p>
+<p><strong>Skipped:</strong> {{ skipped_count }}</p>
+
+{% if duplicate_count > 0 %}
+    
+
+    <br>
+    <a href="{% url 'resolve_duplicates' %}">
+        <button>Review and resolve all duplicates manually</button>
+    </a>
+{% endif %}
+
+<br><br>
+
+<a href="{% url 'upload_excel' %}">
+    <button>Upload another Excel file</button>
+</a>

@@ -1,0 +1,47 @@
+<h2>Possible Duplicates</h2>
+
+<table border="1" cellpadding="10" cellspacing="0" width="100%">
+    <tr>
+        <th colspan="4">Excel Record</th>
+        <th colspan="4">Database Record</th>
+        <th>Action</th>
+    </tr>
+    <tr>
+        <th>Αρ. Εισαγωγής</th>
+        <th>Τίτλος</th>
+        <th>Συγγραφέας</th>
+        <th>Εκδότης</th>
+
+        <th>Αρ. Εισαγωγής</th>
+        <th>Τίτλος</th>
+        <th>Συγγραφέας</th>
+        <th>Εκδότης</th>
+
+        <th></th>
+    </tr>
+
+    {% for dup in duplicates %}
+    <tr>
+        <!-- Excel -->
+        <td>{{ dup.right.ari8mos }}</td>
+        <td>{{ dup.right.titlos }}</td>
+        <td>{{ dup.right.syggrafeas }}</td>
+        <td>{{ dup.right.ekdoths }}</td>
+
+        <!-- Database -->
+        <td>{{ dup.left.ari8mos }}</td>
+        <td>{{ dup.left.titlos }}</td>
+        <td>{{ dup.left.syggrafeas }}</td>
+        <td>{{ dup.left.ekdoths }}</td>
+
+        <td>
+            <form method="post" action="{% url 'handle_duplicate' %}">
+                {% csrf_token %}
+                <input type="hidden" name="index" value="{{ forloop.counter0 }}">
+                <button name="action" value="edit">Edit</button>
+                <button name="action" value="skip">Skip</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
